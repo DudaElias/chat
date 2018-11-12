@@ -13,7 +13,7 @@ public class Usuario
 	{
 		if(nome == null || con == null || trs == null || s == null)
 		{
-			throw new Exception("Dados digitados n„o podem estar nulos!");
+			throw new Exception("Dados digitados n√£o podem estar nulos!");
 		}
 		this.conexao = con;
 		this.transmissor = trs;
@@ -22,8 +22,16 @@ public class Usuario
 	}
 
 
-	public String receber() throws Exception
+	public void envia(Enviavel x) throws Exception
 	{
-		return this.apelido;
+		transmissor.write(x.toString());
 	}
+
+	public Enviavel receber()
+	{
+
+	}
+
+
+
 }

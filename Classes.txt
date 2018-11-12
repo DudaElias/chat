@@ -1,0 +1,22 @@
+public class CuidadoraDeUsuario extends Thread
+{
+	public CuidadoraDeUsuario  (Socket conexao) throws Exception
+	{
+		//declarar e instanciar PW e BR
+		//interagir com o usuario via PW e BR para descobrir o nome da sala que ele deseja entrar, 
+		eventualmente, informando sala cheia
+		//interagir com o usuario para descobrir o nome que ele deseja usar, eventualmente, informando nome incorreto ou já usado. 
+		//procurar em Salas a sala que o usuario deseja
+		//declarar e instanciar 1 usuário, forncecendo a sala e o nome
+		//incluir o usuario na sala
+	}
+}
+
+public Usuario  (Socket conexao ,
+		PrintWriter transmissor,
+		BufferedReader receptor,
+		String nome,
+		Sala sala) throws Exception
+
+classe Enviável = > vetor de Strings
+Tudo que eu quiser enviar vai herdar de Enviavel

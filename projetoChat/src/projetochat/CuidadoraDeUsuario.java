@@ -48,39 +48,21 @@ public class CuidadoraDeUsuario extends Thread
             ObjectOutputStream transmissor = new ObjectOutputStream(conexao.getOutputStream());
             ObjectInputStream receptor = new ObjectInputStream(conexao.getInputStream());
             salaEscolhida = salas.procurar(salaEscolhida.getNome());
-            boolean existe  = false;
+            usu = new Usuario(conexao, transmissor, receptor, this.usu.getNome(), salaEscolhida);
             for(int i = 0; i < salaEscolhida.getUsuarios().size(); i++)
             {
-                if(this.usu.getNome() == ((Sala)(salaEscolhida.getUsuarios().get(i))).getNome())
-                {
-                     transmissor.writeChars("Nome de usuário já escolhido por outro usuário!!");
-                     existe = true;
-                }
+                this.usu.envia(new AvisoDeEntradaNaSala(((Usuario)(salaEscolhida.getUsuarios().get(i))).getNome()));
+                ((Usuario)salaEscolhida.getUsuarios().get(i)).envia(new AvisoDeEntradaNaSala(this.usu.apelido));
             }
-            if(existe == false)
-            {
-                usu = new Usuario(conexao, transmissor, receptor, this.usu.getNome(), salaEscolhida);
-                for(int i = 0; i < salaEscolhida.getUsuarios().size(); i++)
-                {
-                    this.usu.envia(new AvisoDeEntradaNaSala(((Usuario)(salaEscolhida.getUsuarios().get(i))).getNome()));
-                    ((Usuario)salaEscolhida.getUsuarios().get(i)).envia(new AvisoDeEntradaNaSala(this.usu.apelido));
-                }
-                salaEscolhida.adicionarUsu(usu);
-            }
+            salaEscolhida.adicionarUsu(usu);
         } 
         catch (Exception ex) 
         {
         }
-        // instanciar o Usuario, fornecendo, conexao, OOS, OIS, nome e sala
-        // fazer varias vezes this.usuario.envia(new AvisoDeEntradaDaSala(i)), onde i � o nome de algum usuario que ja estava na sala
-        
-        // fazer varias vezes i.envia(new AvisoDeEntradaDaSala(usuario.getNome()), onde i � o nome de algum usuario que ja estava na sala
-        // incluir o usuario na sala
         
         Coisa recebido=null;
         do
         {
-            // receber mensagens, avisos de entrada na e de saida da sala
             recebido = usu.receber();
             if(recebido instanceof Mensagem)
             {
@@ -93,7 +75,6 @@ public class CuidadoraDeUsuario extends Thread
                     catch (Exception ex) {}
                 }
             }
-            // se for mensagem, pega nela o destinatario, acha o destinatario na sala e manda para ele a mensagem
         }
         while (!(recebido instanceof PedidoParaSairDaSala));
         this.salaEscolhida.excluirUsu(this.usu);
@@ -104,10 +85,10 @@ public class CuidadoraDeUsuario extends Thread
                 this.usu.envia(new AvisoDeSaidaDaSala(((Usuario)(salaEscolhida.getUsuarios().get(i))).getNome()));
                 ((Usuario)salaEscolhida.getUsuarios().get(i)).envia(new AvisoDeSaidaDaSala(this.usu.apelido));
             } 
-            catch (Exception ex) {        }
+            catch (Exception ex) 
+            {        
+            }
         }
-        // remover this.usuario da sala
-        // mandar new AvisoDeSaidaDaSala(this.usuario.getNome()) para todos da sala
         this.usu.fechaTudo();
     }
 }

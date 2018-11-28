@@ -21,7 +21,9 @@ public class Salas {
     public Salas() throws Exception
     {
         Sala sala;
-        int quantos = getSalasBd().getRow();
+        getSalasBd().afterLast();
+        int quantos = getRows();
+        getSalasBd().beforeFirst();
         for(int i = 0 ; i<quantos;i++)
         {
             for(int v = 0;v<2 ; v++)
@@ -218,7 +220,7 @@ public class Salas {
             String sql;
 
             sql = "SELECT * " +
-                  "FROM SALAS";
+                  "FROM Salas";
 
             BDSQLServer.COMANDO.prepareStatement (sql);
 
@@ -230,5 +232,17 @@ public class Salas {
         }
 
         return resultado;
+    }
+    
+    public int getRows() throws Exception
+    {
+        int i = 0;
+        for(;;)
+        {
+            getSalasBd().absolute(i);
+            if(getSalasBd().)
+                return i;
+            i++;
+        }
     }
 }

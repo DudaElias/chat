@@ -7,7 +7,7 @@ package chat;
 
 import java.util.ArrayList;
 
-public class SalasDisponiveis extends Salas implements Coisa
+public class SalasDisponiveis extends daos.Salas implements Coisa
 {
     protected ArrayList <Sala> salas = new ArrayList();
     protected int qtd = 0;
@@ -19,7 +19,7 @@ public class SalasDisponiveis extends Salas implements Coisa
     public void guardar()
     {
         int quantos = super.qtd;
-        ArrayList salinhas = super.getSalas();
+        ArrayList<Sala> salinhas = super.getSalas();
         for(int i = 0 ; i< quantos;i++)
         {
             if(!((Sala)salinhas.get(i)).isCheia())
@@ -33,7 +33,7 @@ public class SalasDisponiveis extends Salas implements Coisa
     public void verificar()
     {
         int quantos = super.qtd;
-        ArrayList salinhas = super.getSalas();
+        ArrayList<Sala> salinhas = super.getSalas();
         for(int i = 0 ; i< quantos;i++)
         {
             if(((Sala)salinhas.get(i)).isCheia())

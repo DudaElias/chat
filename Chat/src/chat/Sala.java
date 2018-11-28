@@ -51,7 +51,7 @@ public class Sala //implements Cloneable
 
 		for(int i = 0; i<n ; i++)
 		{
-			if(this.usuarios.get(i).nome == nome)
+			if(this.usuarios.get(i).getNome() == nome)
 			{
                             return this.usuarios.get(i);
 			}
@@ -68,7 +68,7 @@ public class Sala //implements Cloneable
 
 	public int getQtd()
 	{
-		return this.qtd;
+		return this.usuarios.size();
 	}
 
 	public void adicionarUsu(Usuario usu)
@@ -92,13 +92,13 @@ public class Sala //implements Cloneable
 		}
 	}
 
-	public boolean existe(Usuario usu)
+	public boolean existe(String usu)
 	{
 		int n = this.usuarios.size();
 
 		for(int i = 0; i<n ; i++)
 		{
-			if(this.usuarios.get(i) == usu)
+			if(this.usuarios.get(i).getNome() == usu)
 			return true;
 		}
 		return false;

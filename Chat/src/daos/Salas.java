@@ -21,18 +21,14 @@ public class Salas {
     public Salas() throws Exception
     {
         Sala sala;
-        getSalasBd().afterLast();
-        int quantos = getRows();
-        getSalasBd().beforeFirst();
-        for(int i = 0 ; i<quantos;i++)
+        MeuResultSet salasBd = getSalasBd();
+        salasBd.beforeFirst();
+        while(!salasBd.isLast())
         {
-            for(int v = 0;v<2 ; v++)
-            {
-                getSalasBd().next();
-                sala= new Sala(Integer.parseInt(getSalasBd().getString("codigo")),
-                        getSalasBd().getString("nome"),Integer.parseInt(getSalasBd().getString("max")));
-                salas.add(sala);
-            }
+                salasBd.next();
+                sala= new Sala(Integer.parseInt(salasBd.getString(1)),
+                        salasBd.getString(2),Integer.parseInt(salasBd.getString(3)));
+                this.adicionarSala(sala);
         }
         
     }
@@ -91,7 +87,7 @@ public class Salas {
 
 		for(int i = 0; i<n ; i++)
 		{
-			if(this.salas.get(i).getNome() == nome)
+			if(this.salas.get(i).getNome().equals(nome))
                             return this.salas.get(i);
 			
 		}
@@ -234,15 +230,5 @@ public class Salas {
         return resultado;
     }
     
-    public int getRows() throws Exception
-    {
-        int i = 0;
-        for(;;)
-        {
-            getSalasBd().absolute(i);
-            if(getSalasBd().)
-                return i;
-            i++;
-        }
-    }
+   
 }

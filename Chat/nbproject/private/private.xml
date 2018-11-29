@@ -4,14 +4,15 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/u18201/Documents/GitHub/chat/Chat/src/daos/Salas.java</file>
-            <file>file:/C:/Users/u18201/Documents/GitHub/chat/Chat/src/chat/Sala.java</file>
-            <file>file:/C:/Users/u18201/Documents/GitHub/chat/Chat/src/chat/PedidoParaSairDaSala.java</file>
-            <file>file:/C:/Users/u18201/Documents/GitHub/chat/Chat/src/chat/Coisa.java</file>
-            <file>file:/C:/Users/u18201/Documents/GitHub/chat/Chat/src/chat/Mensagem.java</file>
-            <file>file:/C:/Users/u18201/Documents/GitHub/chat/Chat/src/chat/Visual.java</file>
-            <file>file:/C:/Users/u18201/Documents/GitHub/chat/Chat/src/chat/CuidadoraDeUsuario.java</file>
-            <file>file:/C:/Users/u18201/Documents/GitHub/chat/Chat/src/chat/Usuario.java</file>
-            <file>file:/C:/Users/u18201/Documents/GitHub/chat/Chat/src/chat/SalasDisponiveis.java</file>
+            <file>file:/C:/Users/u18201/Documents/GitHub/chat/Chat/src/projetoChat/Visual.java</file>
+            <file>file:/C:/Users/u18201/Documents/GitHub/chat/Chat/src/projetoChat/CuidadoraDeUsuario.java</file>
+            <file>file:/C:/Users/u18201/Documents/GitHub/chat/Chat/src/projetoChat/Coisa.java</file>
+            <file>file:/C:/Users/u18201/Documents/GitHub/chat/Chat/src/projetoChat/Mensagem.java</file>
+            <file>file:/C:/Users/u18201/Documents/GitHub/chat/Chat/src/projetoChat/PedidoParaSairDaSala.java</file>
+            <file>file:/C:/Users/u18201/Documents/GitHub/chat/Chat/src/projetoChat/Usuario.java</file>
+            <file>file:/C:/Users/u18201/Documents/GitHub/chat/Chat/src/projetoChat/SalasDisponiveis.java</file>
+            <file>file:/C:/Users/u18201/Documents/GitHub/chat/Chat/src/projetoChat/Sala.java</file>
+            <file>file:/C:/Users/u18201/Documents/GitHub/chat/Chat/src/projetoChat/Chat.java</file>
         </group>
     </open-files>
 </project-private>

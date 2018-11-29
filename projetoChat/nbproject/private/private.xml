@@ -2,21 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/E:/projetoChat/src/projetochat/PedidoParaSairDaSala.java</file>
-            <file>file:/E:/projetoChat/src/projetochat/Cliente.java</file>
-            <file>file:/E:/projetoChat/src/daos/Salas.java</file>
-            <file>file:/E:/projetoChat/src/projetochat/Sala.java</file>
-            <file>file:/E:/projetoChat/src/projetochat/Mensagem.java</file>
-            <file>file:/E:/projetoChat/src/projetochat/Servidor.java</file>
-            <file>file:/E:/projetoChat/src/projetochat/EscolhaDeSala.java</file>
-            <file>file:/E:/projetoChat/src/projetochat/SalasDisponiveis.java</file>
-            <file>file:/E:/projetoChat/src/projetochat/AvisoDeEntradaNaSala.java</file>
-            <file>file:/E:/projetoChat/src/projetochat/ProjetoChat.java</file>
-            <file>file:/E:/projetoChat/src/projetochat/CuidadoraDeUsuario.java</file>
-            <file>file:/E:/projetoChat/src/projetochat/AvisoDeSaidaDaSala.java</file>
-            <file>file:/E:/projetoChat/src/projetochat/Usuario.java</file>
-            <file>file:/E:/projetoChat/src/projetochat/Coisa.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

@@ -16,15 +16,17 @@ public class Salas {
     public Salas() throws Exception
     {
         Sala sala;
-        int quantos = getSalasBd().getRow();
+        int quantos = getSalasBd().getFetchSize();
         for(int i = 0 ; i<quantos;i++)
         {
             for(int v = 0;v<2 ; v++)
             {
-                getSalasBd().next();
+                while(getSalasBd().next())
+                {
                 sala= new Sala(Integer.parseInt(getSalasBd().getString("codigo")),
                         getSalasBd().getString("nome"),Integer.parseInt(getSalasBd().getString("max")));
-                salas.add(sala);
+                this.adicionarSala(sala);
+                }
             }
         }
         

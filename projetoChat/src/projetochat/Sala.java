@@ -106,6 +106,17 @@ public class Sala //implements Cloneable
 		return false;
 	}
 
+	public boolean existe(String nome)
+	{
+		int n = this.usuarios.size();
+
+		for(int i = 0; i<n ; i++)
+		{
+			if(this.usuarios.get(i).getNome() == nome)
+			return true;
+		}
+		return false;
+	}
 	public String toString()
 	{
 		return "Nome :" + this.nome +"\n" + "Possui" +this.qtd+"usuários, sendo o último " + this.usuarios.get(this.usuarios.size()-1);

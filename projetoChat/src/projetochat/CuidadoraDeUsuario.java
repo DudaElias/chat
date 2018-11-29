@@ -1,19 +1,19 @@
 package projetoChat;
-import projetoChat.Usuario;
-import projetoChat.SalasDisponiveis;
 import java.io.*;
 import java.net.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import daos.Salas;
+import projetoChat.SalasDisponiveis;
+import projetoChat.Usuario;
 
 public class CuidadoraDeUsuario extends Thread
 {
     private Socket  conexao;
-    private SalasDisponiveis   salas;
+    private Salas   salas;
     private Usuario usu;
-    private Sala salaEscolhida = null;
-    public CuidadoraDeUsuario (Socket conexao, SalasDisponiveis salas) throws Exception
+    private projetoChat.Sala salaEscolhida = null;
+    public CuidadoraDeUsuario (Socket conexao, Salas salas) throws Exception
     {
         if(conexao == null || salas == null)
         {
@@ -36,7 +36,7 @@ public class CuidadoraDeUsuario extends Thread
         if(sala == null)
             throw new Exception("Nome de Usuário não pode ser vazio!");
         
-        this.salaEscolhida.nome = sala;
+        this.salaEscolhida.nome= sala;
     }
     
     

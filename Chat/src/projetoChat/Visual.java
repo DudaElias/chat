@@ -182,7 +182,7 @@ public class Visual extends javax.swing.JFrame {
                  
                 if(pode)
                 {
-                    ch = new Chat(jTextField3.getText(),jTextField1.getText());
+                    ch = new Chat(jTextField3.getText(),jTextField1.getText(), sala.getNome());
                 }
             
   
@@ -204,6 +204,7 @@ public class Visual extends javax.swing.JFrame {
         
         ArrayList<String> salas = new ArrayList<String>();
         try {
+            
             jTextField2.setText("Mensagem: ");
             salasDisp = new SalasDisponiveis();
             salasDisp.guardar();

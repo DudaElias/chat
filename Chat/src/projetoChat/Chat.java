@@ -15,13 +15,9 @@ import java.util.logging.Logger;
  * @author u18201
  */
 public class Chat extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Chat
-     */
     ObjectOutputStream obj;
     ObjectInputStream sair;
-    public Chat(String ip,String nome) 
+    public Chat(String ip,String nome, String nomeSala) 
     {
         initComponents();
         setVisible(true);
@@ -30,6 +26,8 @@ public class Chat extends javax.swing.JFrame {
         Socket conexao = new Socket(ip,12345);
         obj = new ObjectOutputStream(conexao.getOutputStream());
         sair = new ObjectInputStream(conexao.getInputStream());
+        obj.writeObject(nomeSala);
+        obj.flush();
         obj.writeObject(nome);
         obj.flush();
         }

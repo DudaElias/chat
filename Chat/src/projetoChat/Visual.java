@@ -167,12 +167,20 @@ public class Visual extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
       try
       {
+    	  if(jTextField1.getText().equals(""))
+    	  {
+    		  throw new Exception("Nome do usuário não pode ser vazio!");
+    	  }
+    	  if(jComboBox1.getSelectedItem().toString().equals(""))
+    	  {
+    		  throw new Exception("Nome da sala não pode ser vazio!");
+    	  }
         String msg = "";
         daos.Salas salas = new daos.Salas();
         Sala sala = salas.procurar(jComboBox1.getSelectedItem().toString());
         boolean pode = true;
      
-        
+        		
         
               if(sala.existe(jTextField1.getText()))
               {

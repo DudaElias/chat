@@ -1,4 +1,4 @@
-package projetoChat;
+﻿package projetoChat;
 import java.io.*;
 import java.net.*;
 import java.util.logging.Level;
@@ -24,6 +24,22 @@ public class CuidadoraDeUsuario extends Thread
         this.salas = salas;
     }
     
+    public void setNome(String nome) throws Exception 
+    {
+        if(nome == null)
+            throw new Exception("Nome de Usuário não pode ser vazio!");
+        
+        this.usu.apelido = nome;
+    }
+    public void setSala(String sala) throws Exception 
+    {
+        if(sala == null)
+            throw new Exception("Nome de Usuário não pode ser vazio!");
+        
+        this.salaEscolhida.nome= sala;
+    }
+    
+    
     public void run ()
     {
         try 
@@ -31,10 +47,8 @@ public class CuidadoraDeUsuario extends Thread
             // procurar em salas a sala com o nome desejado
             ObjectOutputStream transmissor = new ObjectOutputStream(conexao.getOutputStream());
             ObjectInputStream receptor = new ObjectInputStream(conexao.getInputStream());
-            String nomeUsu = (String) receptor.readObject();
-            String nomeSala = (String) receptor.readObject();
-            salaEscolhida = salas.procurar(nomeSala);
-            usu = new Usuario(conexao, transmissor, receptor, nomeUsu, salaEscolhida);
+            salaEscolhida = salas.procurar(salaEscolhida.getNome());
+            usu = new Usuario(conexao, transmissor, receptor, this.usu.getNome(), salaEscolhida);
             for(int i = 0; i < salaEscolhida.getUsuarios().size(); i++)
             {
                 this.usu.envia(new AvisoDeEntradaNaSala(((Usuario)(salaEscolhida.getUsuarios().get(i))).getNome()));

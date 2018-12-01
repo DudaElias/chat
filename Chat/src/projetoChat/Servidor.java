@@ -1,10 +1,6 @@
 package projetoChat;
 
-import java.io.*;
 import java.net.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import projetoChat.SalasDisponiveis;
 public class Servidor
 {
     public static void main (String[] args) throws Exception

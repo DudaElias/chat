@@ -1,10 +1,7 @@
 package projetoChat;
 import java.io.*;
 import java.net.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import daos.Salas;
-import projetoChat.SalasDisponiveis;
 import projetoChat.Usuario;
 
 public class CuidadoraDeUsuario extends Thread

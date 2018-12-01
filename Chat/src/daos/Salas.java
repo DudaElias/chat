@@ -9,8 +9,6 @@ import java.sql.*;
 import bd.BDSQLServer;
 import core.MeuResultSet;
 import projetoChat.Sala;
-import java.net.*;
-import java.io.*;
 import  java.util.*;
 
 public class Salas {

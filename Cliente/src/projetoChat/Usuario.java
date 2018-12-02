@@ -43,7 +43,7 @@ public class Usuario
 	{
             try
             {
-		return (Coisa) this.receptor.readObject();
+            	return (Coisa) this.receptor.readObject();
             }
             
             catch(Exception erro)

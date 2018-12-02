@@ -118,13 +118,17 @@ public class Chat extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) 
+    {
+    	//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try
         {
         	Mensagem msg = new Mensagem(jTextField1.getText(),nomeSala,nomeUsu);
-        	obj.writeObject(msg);
-        	obj.flush();
+
+    		this.obj.writeObject(msg.toString());
+    		this.obj.flush();
+        	jTextField1.setText("");
         }
         catch(Exception err)
         {

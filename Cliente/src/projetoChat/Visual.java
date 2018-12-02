@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 public class Visual extends javax.swing.JFrame {
 
    protected SalasDisponiveis salasDisp;
-    
+    protected Thread rebebendo;
     protected Chat ch = null;
     public Visual() {
         initComponents();

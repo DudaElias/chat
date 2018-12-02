@@ -126,13 +126,13 @@ public class Chat extends javax.swing.JFrame {
         {
         	Mensagem msg = new Mensagem(jTextField1.getText(),nomeSala,nomeUsu);
 
-    		this.obj.writeObject(msg.toString());
-    		this.obj.flush();
+    		obj.writeObject(msg);
+    		obj.flush();
         	jTextField1.setText("");
         }
         catch(Exception err)
         {
-            
+        	System.out.println(err.getStackTrace().toString());
         }
                 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -145,9 +145,8 @@ public class Chat extends javax.swing.JFrame {
     {
         try 
         {
-        	Object recebido = sair.readObject();
-            String msg = recebido.toString();
-            jTextArea1.setText(jTextArea1.getText() + "\n" + msg);
+        	String recebido = sair.readObject().toString();
+            jTextArea1.setText(jTextArea1.getText() + "\n" + recebido);
         } 
         catch (Exception ex) 
         {

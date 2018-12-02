@@ -54,12 +54,13 @@ public class Sala //implements Cloneable
 		{
 			if(this.usuarios.get(i).getNome() == nome)
 			{
+                return this.usuarios.get(i);
 			} else {
-                            return this.usuarios.get(i);
+ 
                 }
 		}
                 
-                throw new Exception("Usuário não existente");
+        throw new Exception("Usuário não existente");
             
         }  
         

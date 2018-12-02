@@ -3,7 +3,7 @@ package projetoChat;
 import java.io.*;
 import java.net.*;
 
-public class Usuario
+public class Usuario implements Serializable
 {
 	protected String apelido;
 	protected Socket conexao;
@@ -39,12 +39,13 @@ public class Usuario
 	{
             try
             {
-		return (Coisa) this.receptor.readObject();
+            	System.out.println(this.receptor.readObject());
+            	return (Coisa) this.receptor.readObject();
             }
             
             catch(Exception erro)
             {
-                
+            	System.out.println(erro.getStackTrace().toString());
             }
             
             return null;

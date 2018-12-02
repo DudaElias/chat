@@ -5,10 +5,13 @@
  */
 package projetoChat;
 
+import java.io.Serializable;
+
 /**
  *
  * @author DELL
  */
-interface Coisa {
+interface Coisa extends Serializable
+{
     
 }

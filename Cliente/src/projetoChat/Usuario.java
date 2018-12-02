@@ -7,7 +7,7 @@ package projetoChat;
 import java.io.*;
 import java.net.*;
 
-public class Usuario
+public class Usuario implements Serializable
 {
 	protected String apelido;
 	protected Socket conexao;
@@ -36,7 +36,6 @@ public class Usuario
 	{
 		this.transmissor.writeObject(x.toString());
 		this.transmissor.flush();
-
 	}
 
 	public Coisa receber()
@@ -48,10 +47,9 @@ public class Usuario
             
             catch(Exception erro)
             {
-                
+            	System.out.println(erro.getStackTrace().toString());
+                return null;
             }
-            
-            return null;
 	}
 	
 	public void fechaTudo()

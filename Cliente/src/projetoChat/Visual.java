@@ -253,7 +253,7 @@ public class Visual extends javax.swing.JFrame {
          while(true)
          {
             v.receber();
-            Thread.sleep(100);
+            //Thread.sleep(100);
          }       
     }
 

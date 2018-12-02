@@ -2,6 +2,7 @@ package projetoChat;
 
 public class Mensagem implements Coisa
 {
+	protected static final long serialVersionUID = 1L;
     protected String mensagem;
     protected String desti;
     protected String rem;

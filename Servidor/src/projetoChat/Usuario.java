@@ -30,8 +30,16 @@ public class Usuario implements Serializable
 
 	public void envia(Coisa x) throws Exception
 	{
+		try
+		{
 		this.transmissor.writeObject(x.toString());
 		this.transmissor.flush();
+		}
+		catch(Exception err)
+		{
+        	System.out.println(err.getStackTrace().toString());
+
+		}
 
 	}
 

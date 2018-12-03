@@ -32,8 +32,8 @@ public class Usuario implements Serializable
 	{
 		try
 		{
-		this.transmissor.writeObject(x.toString());
-		this.transmissor.flush();
+                    this.transmissor.writeObject(x.toString());
+                    this.transmissor.flush();
 		}
 		catch(Exception err)
 		{

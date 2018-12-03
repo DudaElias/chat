@@ -49,14 +49,11 @@ public class CuidadoraDeUsuario extends Thread
             recebido = usu.receber();
             if(recebido instanceof Mensagem)
             {
-                /*for(int i = 0; salaEscolhida.getUsuarios().size() > i; i++)
-                {*/
-                    try 
-                    {
-                        ((Usuario)this.salaEscolhida.getUsuario(usu.getNome())).envia(recebido);
-                    }
-                    catch (Exception ex) {}
-               /* }*/
+                try 
+                {
+                    this.usu.envia(recebido);
+                }
+                catch (Exception ex) {}
             }
         }
         while (!(recebido instanceof PedidoParaSairDaSala));

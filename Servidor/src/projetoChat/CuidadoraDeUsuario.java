@@ -53,12 +53,12 @@ public class CuidadoraDeUsuario extends Thread
 		        String nomeSala = (String) receptor.readObject();
 		        salaEscolhida = salas.procurar(nomeSala);
 		        usu = new Usuario(conexao, transmissor, receptor, nomeUsu, salaEscolhida);
-		        for(int i = 0; i < salaEscolhida.getUsuarios().size(); i++)
+                        salaEscolhida.adicionarUsu(usu);
+                        for(int i = 0; i < salaEscolhida.getUsuarios().size()-1; i++)
 		        {
 		            this.usu.envia(new AvisoDeEntradaNaSala(((Usuario)(salaEscolhida.getUsuarios().get(i))).getNome()));
 		            ((Usuario)salaEscolhida.getUsuarios().get(i)).envia(new AvisoDeEntradaNaSala(this.usu.apelido));
 		        }
-		        salaEscolhida.adicionarUsu(usu);
 		        Coisa recebido=null;
 	        do
 	        {
@@ -67,14 +67,14 @@ public class CuidadoraDeUsuario extends Thread
 	            {
 		            if(recebido instanceof Mensagem)
 		            {
-		                /*for(int i = 0; salaEscolhida.getUsuarios().size() > i; i++)
-		                {*/
-		                    try 
-		                    {
-		                        ((Usuario)this.salaEscolhida.getUsuario(usu.getNome())).envia((Mensagem)recebido);
-		                    }
-		                    catch (Exception ex) {}
-		                /*}*/
+		                try 
+                                {
+                                    for(int i = 0; i < salaEscolhida.getUsuarios().size(); i++)
+                                    {
+                                        ((Usuario)salaEscolhida.getUsuarios().get(i)).envia(recebido);
+                                    }
+                                }
+                                catch (Exception ex) {}
 		            }
 	            }
 	        }
@@ -83,12 +83,12 @@ public class CuidadoraDeUsuario extends Thread
 		        for(int i = 0; salaEscolhida.getUsuarios().size() > i; i++)
 		        {
 		            try 
-		            {
-		                this.usu.envia(new AvisoDeSaidaDaSala(((Usuario)(salaEscolhida.getUsuarios().get(i))).getNome()));
+                            {
 		                ((Usuario)salaEscolhida.getUsuarios().get(i)).envia(new AvisoDeSaidaDaSala(this.usu.apelido));
 		            } 
 		            catch (Exception ex) 
 		            {        
+                                System.out.println(ex.getMessage());
 		            }
 		        }
 		        this.usu.fechaTudo();

@@ -8,12 +8,12 @@ package daos;
 import java.sql.*;
 import bd.BDSQLServer;
 import core.MeuResultSet;
-import projetoChat.Sala;
+import cliente.Sala;
 import  java.util.*;
 
 public class Salas {
     
-   protected ArrayList <projetoChat.Sala> salas = new ArrayList();
+   protected ArrayList <cliente.Sala> salas = new ArrayList();
    protected int qtd = 0;
     
     public Salas() throws Exception
@@ -46,13 +46,13 @@ public class Salas {
         return salas.size();
     }
     
-        public void adicionarSala(projetoChat.Sala sala)
+        public void adicionarSala(cliente.Sala sala)
 	{
             this.salas.add(sala);
             this.qtd++;
 	}
         
-        public void excluirUsu (projetoChat.Sala sala)
+        public void excluirUsu (cliente.Sala sala)
 	{
 		int n = this.salas.size();
 
@@ -67,7 +67,7 @@ public class Salas {
 		}
 	}
         
-        public boolean existe(projetoChat.Sala sala)
+        public boolean existe(cliente.Sala sala)
 	{
 		int n = this.salas.size();
 
@@ -79,7 +79,7 @@ public class Salas {
 		return false;
 	}
         
-        public projetoChat.Sala procurar(String nome) throws Exception
+        public cliente.Sala procurar(String nome) throws Exception
 	{
 		int n = this.salas.size();
 
@@ -120,7 +120,7 @@ public class Salas {
         return retorno;
     }
 
-    public static void incluir (projetoChat.Sala sala) throws Exception
+    public static void incluir (cliente.Sala sala) throws Exception
     {
         if (sala==null)
             throw new Exception ("Sala nao fornecido");

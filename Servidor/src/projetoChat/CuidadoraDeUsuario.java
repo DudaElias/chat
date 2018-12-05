@@ -10,6 +10,7 @@ import projetoChat.Usuario;
 public class CuidadoraDeUsuario extends Thread
 {
     private boolean viva = true;
+    protected boolean errou = true;
     private Socket  conexao;
     private Salas   salas;
     private Usuario usu;
@@ -29,30 +30,6 @@ public class CuidadoraDeUsuario extends Thread
         this.salas = salas;
     }
     
-    public void setNome(String nome) throws Exception 
-    {
-        if(salaEscolhida.existe(nome))
-        {
-            throw new Exception("Este nome já existe!! Tente novamente.");
-                  
-        }
-        if(nome == null)
-            throw new Exception("Nome de Usuário não pode ser vazio!");
-        
-        this.nomeUsu = nome;
-    }
-    public void setSala(String sala) throws Exception 
-    {
-        if(salaEscolhida.isCheia())
-        {
-          throw new Exception("Sala escolhida está cheia!");
-        }
-        if(sala == null)
-            throw new Exception("Nome de Usuário não pode ser vazio!");
-        
-        this.nomeSala= sala;
-    }
-    
     
     public void run ()
     {
@@ -60,12 +37,36 @@ public class CuidadoraDeUsuario extends Thread
         {
     	try
     	{
-                transmissor = new ObjectOutputStream(conexao.getOutputStream());
-                receptor = new ObjectInputStream(conexao.getInputStream());
-                String nomeSala = (String)receptor.readObject();
-                salaEscolhida = salas.procurar(nomeSala);
-                setSala(nomeSala);
-                setNome((String)receptor.readObject());
+                while(errou)
+                {
+                    transmissor = new ObjectOutputStream(conexao.getOutputStream());
+                    receptor = new ObjectInputStream(conexao.getInputStream());
+                    this.nomeSala = (String)receptor.readObject();
+                    this.nomeUsu = (String)receptor.readObject();
+                    salaEscolhida = salas.procurar(nomeSala);
+                    if(salaEscolhida.isCheia())
+                    {
+                      transmissor.writeObject("Sala escolhida está cheia!");
+                    }
+                    else if(this.nomeSala == null)
+                    {
+                        transmissor.writeObject("Nome da Sala não pode ser vazio!");
+                    }
+                    else if(salaEscolhida.existe(this.nomeUsu))
+                    {
+                        transmissor.writeObject("Este nome já existe!! Tente novamente.");
+                    }
+                    else if(this.nomeUsu == null)
+                    {
+                        transmissor.writeObject("Nome de Usuário não pode ser vazio!");
+                    }
+                    else
+                    {
+                        errou = false;
+                        transmissor.writeObject("Processo completo");
+                    }
+                    transmissor.flush();
+                }
                 usu = new Usuario(conexao, transmissor, receptor, nomeUsu, salaEscolhida);
                 salaEscolhida.adicionarUsu(usu);
                 for(int i = 0; i < salaEscolhida.getUsuarios().size()-1; i++)

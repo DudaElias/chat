@@ -174,13 +174,32 @@ public class Visual extends javax.swing.JFrame {
     	  {
     		  throw new Exception("Nome da sala não pode ser vazio!");
     	  }
+          if(jTextField3.getText().equals(""))
+          {
+              throw new Exception("Nome do ip não pode ser vazio!");
+          }
         String msg = "";
-        daos.Salas salas = new daos.Salas();
-        Sala sala = salas.procurar(jComboBox1.getSelectedItem().toString());
-        ch = new Chat(jTextField3.getText(),jTextField1.getText(), sala.getNome());
-        //setVisible(false);
-        Recebendo meuRecebe = new Recebendo(ch);
-        meuRecebe.start();
+        Socket conexao = new Socket(jTextField3.getText(),12345);
+        ObjectOutputStream transmissor = new ObjectOutputStream(conexao.getOutputStream());
+        ObjectInputStream receptor = new ObjectInputStream(conexao.getInputStream());
+        transmissor.writeObject(jComboBox1.getSelectedItem().toString());
+        transmissor.flush();
+        transmissor.writeObject(jTextField1.getText());
+        transmissor.flush();
+        String resposta = (String) receptor.readObject();
+        if(resposta.equals("Processo completo"))
+        {
+            daos.Salas salas = new daos.Salas();
+            Sala sala = salas.procurar(jComboBox1.getSelectedItem().toString());
+            ch = new Chat(transmissor,receptor,jTextField1.getText(), sala.getNome());
+            //setVisible(false);
+            Recebendo meuRecebe = new Recebendo(ch);
+            meuRecebe.start();
+        }
+        else
+        {
+            jTextField2.setText(resposta);
+        }
       }
       catch (Exception ex) 
       {

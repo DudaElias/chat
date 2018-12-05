@@ -21,21 +21,20 @@ public class Chat extends javax.swing.JFrame {
     protected String nomeSala;
     protected String nomeUsu;
     protected boolean fecharComunicacao = false;
-    public Chat(String ip,String nome, String nomeSala) 
+    public Chat(ObjectOutputStream o,ObjectInputStream i,String nome, String nomeSala) 
     {
         initComponents();
         setVisible(true);
         try
         {
-        Socket conexao = new Socket(ip,12345);
-        obj = new ObjectOutputStream(conexao.getOutputStream());
-        sair = new ObjectInputStream(conexao.getInputStream());
-        obj.writeObject(nomeSala);
-        obj.flush();
-        obj.writeObject(nome);
-        obj.flush();
-        this.nomeSala = nomeSala;
-        this.nomeUsu = nome;
+            if(o == null)
+                throw new Exception("ObjectOutputStream não pode ser vazio");
+            if(i == null)
+                throw new Exception("ObjectInputStream não pode ser vazio");
+            obj = o;
+            sair = i;
+            this.nomeSala = nomeSala;
+            this.nomeUsu = nome;
         }
         catch(Exception err)
         {
@@ -136,7 +135,6 @@ public class Chat extends javax.swing.JFrame {
         try
         {
         	Mensagem msg = new Mensagem(jTextField1.getText(),nomeSala,nomeUsu);
-
     		obj.writeObject(msg);
     		obj.flush();
         	jTextField1.setText("");
@@ -180,15 +178,16 @@ public class Chat extends javax.swing.JFrame {
     {
         if(!fecharComunicacao)
         {
-        try 
-        {
-            String recebido = sair.readObject().toString();
-            jTextArea1.setText(jTextArea1.getText() + "\n" + recebido);
-        } 
-        catch (Exception ex) 
-        {
-            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            try 
+            {
+                
+                String recebido = sair.readObject().toString();
+                jTextArea1.setText(jTextArea1.getText() + "\n" + recebido);
+            } 
+            catch (Exception ex) 
+            {
+                Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
     

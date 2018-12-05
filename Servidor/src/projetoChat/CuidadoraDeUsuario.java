@@ -71,6 +71,14 @@ public class CuidadoraDeUsuario extends Thread
                 salaEscolhida.adicionarUsu(usu);
                 for(int i = 0; i < salaEscolhida.getUsuarios().size()-1; i++)
                 {
+                    AvisosUsuarios nomeUsu = new AvisosUsuarios(salaEscolhida.getNomeUsu((Usuario)(this.salaEscolhida.getUsuarios().get(i))));
+                    transmissor.writeObject(nomeUsu);
+                    transmissor.flush();
+                    (((Usuario)salaEscolhida.getUsuarios().get(i))).envia(new AvisosUsuarios(this.usu.apelido));
+                }
+
+                for(int i = 0; i < salaEscolhida.getUsuarios().size()-1; i++)
+                {
                     this.usu.envia(new AvisoDeEntradaNaSala(((Usuario)(salaEscolhida.getUsuarios().get(i))).getNome()));
                     ((Usuario)salaEscolhida.getUsuarios().get(i)).envia(new AvisoDeEntradaNaSala(this.usu.apelido));
                 }

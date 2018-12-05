@@ -63,6 +63,27 @@ public class Sala //implements Cloneable
         throw new Exception("Usuário não existente");
             
         }  
+         public String getNomeUsu(Usuario usu)throws Exception
+        {
+            if(usu == null)
+                throw new Exception("Nome de usuário ausente");
+            
+            int n = this.usuarios.size();
+
+
+		for(int i = 0; i<n ; i++)
+		{
+			if(this.usuarios.get(i)== usu)
+			{
+                            return this.usuarios.get(i).getNome();
+			} else {
+ 
+                }
+		}
+                
+        throw new Exception("Usuário não existente");
+            
+        }  
         
         public boolean isCheia()
         {

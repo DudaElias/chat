@@ -113,7 +113,7 @@ public class Sala //implements Cloneable
 
 		for(int i = 0; i<n ; i++)
 		{
-			if(this.usuarios.get(i).getNome() == nome)
+			if(this.usuarios.get(i).getNome().equals(nome))
 			return true;
 		}
 		return false;

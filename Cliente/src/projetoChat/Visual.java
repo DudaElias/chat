@@ -16,7 +16,6 @@ import java.util.logging.Logger;
 public class Visual extends javax.swing.JFrame {
 
    protected SalasDisponiveis salasDisp;
-    protected Thread rebebendo;
     protected Chat ch = null;
     public Visual() {
         initComponents();
@@ -178,39 +177,19 @@ public class Visual extends javax.swing.JFrame {
         String msg = "";
         daos.Salas salas = new daos.Salas();
         Sala sala = salas.procurar(jComboBox1.getSelectedItem().toString());
-        boolean pode = true;
-     
-        		
-        
-              if(sala.existe(jTextField1.getText()))
-              {
-                  jTextField2.setText("Este nome já existe!! Tente novamente.");
-                  pode = false;
-              }
-                 
-                if(pode)
-                {
-                    ch = new Chat(jTextField3.getText(),jTextField1.getText(), sala.getNome());
-                }
-            
-  
-    
-
-        /*java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Visual().setVisible(true);
-            }
-        });*/
+        ch = new Chat(jTextField3.getText(),jTextField1.getText(), sala.getNome());
+        //setVisible(false);
+        Recebendo meuRecebe = new Recebendo(ch);
+        meuRecebe.start();
       }
-      catch (Exception ex) {
-              Logger.getLogger(Visual.class.getName()).log(Level.SEVERE, null, ex);
+      catch (Exception ex) 
+      {
+        jTextField2.setText(ex.getMessage());
       }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         
-        
-        ArrayList<String> salas = new ArrayList<String>();
         try {
             
             jTextField2.setText("Mensagem: ");
@@ -233,28 +212,9 @@ public class Visual extends javax.swing.JFrame {
        
     }//GEN-LAST:event_formWindowOpened
 
-    void receber()
-    {
-        try
-        {
-             if(ch != null)
-             {
-                ch.receber();   
-             }
-        }
-        catch(Exception err)
-        {
-            
-        }
-    }
     public static void main(String args[]) throws Exception{
          Visual v = new Visual();
-         v.setVisible(true);
-         while(true)
-         {
-            v.receber();
-            Thread.sleep(100);
-         }       
+         v.setVisible(true);  
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

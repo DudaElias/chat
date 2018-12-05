@@ -59,6 +59,7 @@ public class Usuario implements Serializable
 		this.transmissor.close();
         	this.receptor.close();
        		this.conexao.close();
+                
             }
             catch(Exception erro)
             {

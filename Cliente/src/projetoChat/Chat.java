@@ -9,6 +9,7 @@ import java.io.*;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 /**
  *
@@ -19,6 +20,7 @@ public class Chat extends javax.swing.JFrame {
     protected ObjectInputStream sair;
     protected String nomeSala;
     protected String nomeUsu;
+    protected boolean fecharComunicacao = false;
     public Chat(String ip,String nome, String nomeSala) 
     {
         initComponents();
@@ -28,9 +30,9 @@ public class Chat extends javax.swing.JFrame {
         Socket conexao = new Socket(ip,12345);
         obj = new ObjectOutputStream(conexao.getOutputStream());
         sair = new ObjectInputStream(conexao.getInputStream());
-        obj.writeObject(nome);
-        obj.flush();
         obj.writeObject(nomeSala);
+        obj.flush();
+        obj.writeObject(nome);
         obj.flush();
         this.nomeSala = nomeSala;
         this.nomeUsu = nome;
@@ -154,11 +156,18 @@ public class Chat extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
         PedidoParaSairDaSala pedido = new PedidoParaSairDaSala();
-        try {
+        try 
+        {
             obj.writeObject(pedido);
             obj.flush();
             Thread.sleep(100);
-        } catch (Exception ex) {
+            obj.close();
+            sair.close();
+            fecharComunicacao = true;
+            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        } 
+        catch (Exception ex)
+        {
             Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formWindowClosing
@@ -169,14 +178,17 @@ public class Chat extends javax.swing.JFrame {
     
     public void receber()
     {
+        if(!fecharComunicacao)
+        {
         try 
         {
-        	String recebido = sair.readObject().toString();
+            String recebido = sair.readObject().toString();
             jTextArea1.setText(jTextArea1.getText() + "\n" + recebido);
         } 
         catch (Exception ex) 
         {
             Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+        }
         }
     }
     

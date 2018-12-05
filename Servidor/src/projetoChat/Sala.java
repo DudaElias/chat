@@ -44,7 +44,7 @@ public class Sala //implements Cloneable
         
         public Usuario getUsuario(String nome)throws Exception
         {
-            if(nome == "" || nome.equals(""))
+            if(nome.equals(""))
                 throw new Exception("Nome de usuário ausente");
             
             int n = this.usuarios.size();
@@ -52,7 +52,7 @@ public class Sala //implements Cloneable
 
 		for(int i = 0; i<n ; i++)
 		{
-			if(this.usuarios.get(i).getNome() == nome)
+			if(this.usuarios.get(i).getNome().equals(nome))
 			{
                 return this.usuarios.get(i);
 			} else {

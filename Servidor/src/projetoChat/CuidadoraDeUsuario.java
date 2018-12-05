@@ -76,7 +76,6 @@ public class CuidadoraDeUsuario extends Thread
                     transmissor.flush();
                     (((Usuario)salaEscolhida.getUsuarios().get(i))).envia(new AvisosUsuarios(this.usu.apelido));
                 }
-
                 for(int i = 0; i < salaEscolhida.getUsuarios().size()-1; i++)
                 {
                     this.usu.envia(new AvisoDeEntradaNaSala(((Usuario)(salaEscolhida.getUsuarios().get(i))).getNome()));
@@ -90,10 +89,19 @@ public class CuidadoraDeUsuario extends Thread
 	            {
 		            if(recebido instanceof Mensagem)
                             {
+                                String destinatario = ((Mensagem) recebido).desti;
+                                if(salaEscolhida.getNome().equals(destinatario))
+                                {
                                     for(int i = 0; i < salaEscolhida.getUsuarios().size(); i++)
                                     {
                                         ((Usuario)salaEscolhida.getUsuarios().get(i)).envia(recebido);
                                     }
+                                }
+                                else
+                                {
+                                    ((Usuario)salaEscolhida.getUsuario(this.usu.apelido)).envia(recebido);
+                                    ((Usuario)salaEscolhida.getUsuario(destinatario)).envia(recebido);
+                                }
                             }
                     }
                 }

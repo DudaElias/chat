@@ -25,4 +25,34 @@ public class Mensagem implements Coisa
     {
         return this.rem + ": " + mensagem;
     }
+    public int hashCode()
+   {
+       int ret = 666;
+       ret = ret*2 + Integer.parseInt(mensagem);
+       ret = ret*2 + Integer.parseInt(desti);
+       ret = ret*2+ Integer.parseInt(rem);
+       return ret;
+   }
+   
+   public boolean equals(Object obj)
+   {
+       if(this == obj)
+           return true;
+       if(obj == null)
+           return false;
+       if (this.getClass()!=obj.getClass())
+		return false;
+       Mensagem msg = (Mensagem)obj;       
+       
+       if(!msg.desti.equals(this.desti))
+           return false;
+       
+       if(!msg.mensagem.equals(this.mensagem))
+           return false;
+       
+       if(!msg.rem.equals(this.rem))
+           return false;
+       
+       return true;
+   }
 }

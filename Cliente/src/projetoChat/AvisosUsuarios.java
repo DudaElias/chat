@@ -26,4 +26,25 @@ public class AvisosUsuarios implements Coisa
     {
         return mensagem;
     }
+    public int hashCode()
+   {
+       int ret = 666;
+       ret = ret*2 + Integer.parseInt(this.mensagem);
+       return ret;
+   }
+   
+   public boolean equals(Object obj)
+   {
+       if(this == obj)
+           return true;
+       if(obj == null)
+           return false;
+       if (this.getClass()!=obj.getClass())
+		return false;
+       AvisosUsuarios aviso = (AvisosUsuarios)obj;       
+       
+       if(!aviso.mensagem.equals(this.mensagem))
+           return false;
+       return true;
+   }
 }

@@ -14,4 +14,25 @@ public class AvisoDeSaidaDaSala implements Coisa
    {
        return "O usuário " + this.nome + " saiu da sala";
    }
+   public int hashCode()
+   {
+       int ret = 666;
+       ret = ret*2 + Integer.parseInt(nome);
+       return ret;
+   }
+   
+   public boolean equals(Object obj)
+   {
+       if(this == obj)
+           return true;
+       if(obj == null)
+           return false;
+       if (this.getClass()!=obj.getClass())
+		return false;
+       AvisoDeSaidaDaSala aviso = (AvisoDeSaidaDaSala)obj;       
+       
+       if(!aviso.nome.equals(this.nome))
+           return false;
+       return true;
+   }
 }

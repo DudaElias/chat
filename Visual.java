@@ -23,6 +23,7 @@ public class Visual
 	private JTextField nomeIp = new JTextField();
     	public Visual() 
 	{
-        	
+        	JPanel tit = new JPanel();
+		tit.setLayout(new GroupLayout);
     	}
 }

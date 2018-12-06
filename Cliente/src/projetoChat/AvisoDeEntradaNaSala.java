@@ -40,4 +40,5 @@ public class AvisoDeEntradaNaSala implements Coisa
            return false;
        return true;
    }
+   
 }

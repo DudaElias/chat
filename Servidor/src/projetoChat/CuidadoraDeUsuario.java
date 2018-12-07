@@ -31,7 +31,7 @@ public class CuidadoraDeUsuario extends Thread
     }
     
     
-    public void run ()
+    synchronized public void run ()
     {
         while(this.viva)
         {
@@ -130,5 +130,58 @@ public class CuidadoraDeUsuario extends Thread
     public void morra()
     {
         this.viva = false;
+    }
+    public String toString()
+    {
+        return this.nomeUsu + " na sala " + this.nomeSala;
+    }
+    public boolean equals(CuidadoraDeUsuario obj)
+    {
+       if(this == obj)
+           return true;
+       if(obj == null)
+           return false;
+       if (this.getClass()!=obj.getClass())
+		return false;
+       CuidadoraDeUsuario aviso = (CuidadoraDeUsuario)obj;       
+       if(aviso.viva!=this.viva) 
+       {
+           return false;
+       } 
+       if(this.conexao != obj.conexao)
+           return false;
+       if(this.errou != obj.errou)
+           return false;
+       if(!this.nomeSala.equals(obj.nomeSala))
+           return false;
+       if(!this.nomeUsu.equals(obj.nomeUsu))
+           return false;
+       if(this.receptor != obj.receptor)
+           return false;
+       if(!this.salaEscolhida.equals(obj.salaEscolhida))
+           return false;
+       if(!this.salas.equals(obj.salas))
+           return false;
+       if(this.transmissor != obj.transmissor)
+           return false;
+       if(!this.usu.equals(obj.usu))
+           return false;
+           
+       return true;
+        
+    }
+    public int hashCode()
+    {
+        int ret = 666;
+       ret = this.viva?0:1 + 2*ret;
+       ret = Integer.parseInt(this.conexao.toString()) + 2*ret;
+       ret = Integer.parseInt(this.nomeSala) + 2*ret;
+       ret = Integer.parseInt(this.nomeUsu) + 2*ret;
+       ret = this.viva?0:1 + 2*ret;
+       ret = Integer.parseInt(this.receptor.toString() + 2*ret);
+       ret = Integer.parseInt(this.salaEscolhida.toString()) + 2*ret;
+       ret = Integer.parseInt(this.transmissor.toString()) + 2*ret;
+       ret = Integer.parseInt(this.usu.toString()) + ret*2;
+       return ret;
     }
 }
